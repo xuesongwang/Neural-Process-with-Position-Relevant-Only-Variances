@@ -3,29 +3,41 @@
 
 This repository is the official implementation of [NP-PROV: Neural Processes with Position-Relevant-Only Variances](https://arxiv.org/abs/2030.12345). 
 
+<p align="center">
 <img src="demo_images/NP-PROV-MU.jpg" width="200"> <img src="demo_images/NP-PROV-SIGMA.jpg" width="200">
-
-> 📋Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials
+</p>
 
 ## Requirements
+* Python 3.6 or higher.
 
-To install requirements:
+* `gcc` and `gfortran`:
+    On OS X, these are both installed with `brew install gcc`.
+    On Linux, `gcc` is most likely already available,
+    and `gfortran` can be installed with `apt-get install gfortran`.
+    
 
-```setup
+Install the requirements and You should now be ready togo!
+
+```bash
 pip install -r requirements.txt
 ```
 
-> 📋Describe how to set up the environment, e.g. pip/conda/docker commands, download datasets, etc...
 
 ## Training
 
-To train the model(s) in the paper, run this command:
+To train the model(s) for off-the-grid datasets, run this command:
 
 ```train
-python train.py --input-data <path_to_data> --alpha 10 --beta 20
+python train_1d.py --name EQ --epochs 200 --learning_rate 3e-4 --weight_decay 1e-5
 ```
 
-> 📋Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters.
+The first argument, `name`(`default = EQ`), specifies the data that the model will be trained
+on, and should be one of the following:
+ 
+* `EQ`: samples from a GP with an exponentiated quadratic (EQ) kernel;
+* `matern`: samples from a GP with a Matern-5/2 kernel;
+* `period`: samples from a GP with a weakly-periodic kernel
+
 
 ## Evaluation
 

@@ -12,7 +12,7 @@ __all__ = ['device',
            'pad_concat',
            'gaussian_logpdf']
 
-device = torch.device('cuda:7' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 """Device perform computations on."""
 
 
@@ -31,6 +31,9 @@ def to_multiple(x, multiple):
     else:
         return x + multiple - x % multiple
 
+def to_numpy(x):
+    """Convert a PyTorch tensor to NumPy."""
+    return x.squeeze().detach().cpu().numpy()
 
 class BatchLinear(nn.Linear):
     """Helper class for linear layers on order-3 tensors.
@@ -256,3 +259,28 @@ def xy_to_img(x, y, img_size):
 
 def channel_last(x):
     return x.transpose(1, 2).transpose(2, 3)
+
+class RunningAverage:
+    """Maintain a running average."""
+
+    def __init__(self):
+        self.avg = 0
+        self.sum = 0
+        self.cnt = 0
+
+    def reset(self):
+        """Reset the running average."""
+        self.avg = 0
+        self.sum = 0
+        self.cnt = 0
+
+    def update(self, val, n=1):
+        """Update the running average.
+
+        Args:
+            val (float): Value to update with.
+            n (int): Number elements used to compute `val`.
+        """
+        self.sum += val * n
+        self.cnt += n
+        self.avg = self.sum / self.cnt

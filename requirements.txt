@@ -2,3 +2,5 @@ numpy
 matplotlib
 torch
 stheno
+tqdm
+matplotlib
