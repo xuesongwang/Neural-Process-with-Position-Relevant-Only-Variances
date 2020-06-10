@@ -3,8 +3,7 @@
 
 This repository is the official implementation of [NP-PROV: Neural Processes with Position-Relevant-Only Variances](https://arxiv.org/abs/2030.12345). 
 
-<img src="demo_images/NP-PROV-MU.jpg" width="48">
-<img src="demo_images/NP-PROV-SIGMA.jpg" width="48">
+<img src="demo_images/NP-PROV-MU.jpg" width="200"> <img src="demo_images/NP-PROV-SIGMA.jpg" width="200">
 
 > 📋Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials
 
