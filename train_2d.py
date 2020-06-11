@@ -4,7 +4,6 @@ import numpy as np
 import torch
 import torch.optim as optim
 from data.image_data import load_dataset
-from torch.utils.data import DataLoader
 from model.NP_Prov_2d import NPPROV2d
 from model.utils import channel_last
 import warnings

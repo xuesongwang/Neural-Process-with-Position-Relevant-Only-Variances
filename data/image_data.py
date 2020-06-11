@@ -7,7 +7,7 @@ import numpy as np
 def train_val_split(trainset):
     num_train = len(trainset)
     indices = list(range(num_train))
-    split = int(np.floor(2 * num_train / 7))
+    split = int(np.floor(0.3 * num_train))
     np.random.seed(0)
     np.random.shuffle(indices)
     train_idx, valid_idx = indices[split:], indices[:split]

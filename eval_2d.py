@@ -1,10 +1,7 @@
 import argparse
 from tqdm import tqdm
-import numpy as np
 import torch
-import torch.optim as optim
 from data.image_data import load_dataset
-from torch.utils.data import DataLoader
 from model.NP_Prov_2d import NPPROV2d
 from model.utils import channel_last
 import warnings
@@ -29,8 +26,6 @@ def validate(model, dataloader):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch-size', '-B', type=int, default=16)
-    parser.add_argument('--learning-rate', '-LR', type=float, default=5e-4)
-    parser.add_argument('--epochs', '-E', type=int, default=100)
     parser.add_argument('--dataset', '-D', type=str, default='mnist', choices=['mnist', 'svhn', 'celebA'])
 
     args = parser.parse_args()
