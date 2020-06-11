@@ -25,6 +25,7 @@ pip install -r requirements.txt
 
 ## Training
 
+#### Off-the-grid datasets
 To train the model(s) for off-the-grid datasets, run this command:
 
 ```train
@@ -40,7 +41,8 @@ on, and should be one of the following:
 * `smart_meter`: This dataset is referred from: https://github.com/3springs/attentive-neural-processes/tree/RANPfSD/data 
  To train on smart_meter, you need to change the argument `indir` in the function of `get_smartmeter_df` in `data/smart_meter.py` 
  to your own data path. 
-           
+     
+#### On-the-grid datasets      
 To train the models for on-the-grid datasets, run this command:
 ```train
 python train_2d.py --dataset mnist --batch-size 16 --learning-rate 5e-4 --epochs 100
@@ -55,7 +57,7 @@ of the function `load_dataset` in `data/image_data.py` to the location of your d
 We split the downloaded training datasets into training and validating sets with the proportion: 7:3 and use additional testing sets. 
 
 ## Evaluation
-
+#### Off-the-grid datasets
 To evaluate my model on off-the-grid datasets, run:
 
 ```eval
@@ -64,6 +66,7 @@ python eval_1d.py --name EQ
 The argument is the same as in train_1d.py. A model called `name` + `_model.pt`
 will be loaded from the folder `saved_model`
 
+#### On-the-grid datasets
 To evaluate my model on On-the-grid datasets, run:
 ```eval
 python eval_2d.py --dataset mnist --batch-size 16
