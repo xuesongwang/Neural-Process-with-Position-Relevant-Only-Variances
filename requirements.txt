@@ -1,6 +1,7 @@
 numpy
+pandas
 matplotlib
 torch
+torchvision
 stheno
 tqdm
-matplotlib

@@ -52,8 +52,11 @@ class NPPROV2d(nn.Module):
 
         self.mr = [0.5, 0.7, 0.9]
 
-    def forward(self, I, context_mask):
-        M_c = context_mask.unsqueeze(1).repeat(1, self.channel, 1, 1)
+    def forward(self, I):
+        n_total = I.size(2) * I.size(3)
+        num_context = int(torch.empty(1).uniform_(n_total / 100, n_total / 2).item())
+        M_c = I.new_empty(I.size(0), 1, I.size(2), I.size(3)).bernoulli_(p=num_context / n_total).repeat(1, self.channel, 1, 1)
+
         signal = I * M_c
         density = M_c
 
@@ -122,5 +125,6 @@ class NPPROV2d(nn.Module):
         std = self.pos(pre_std)
 
         return M_c, mean, std, MultivariateNormal(channel_last(mean), scale_tril=channel_last(std).diag_embed())
+
 
 
