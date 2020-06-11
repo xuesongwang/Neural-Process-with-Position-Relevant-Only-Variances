@@ -4,7 +4,6 @@ import numpy as np
 import stheno
 import torch
 
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 __all__ = ['GPGenerator']
 
@@ -126,7 +125,7 @@ class DataGenerator(metaclass=abc.ABCMeta):
 
         # Stack batch and convert to PyTorch.
         task = {k: torch.tensor(_uprank(np.stack(v, axis=0)),
-                                dtype=torch.float32).to(device)
+                                dtype=torch.float32)
                 for k, v in task.items()}
 
         return task

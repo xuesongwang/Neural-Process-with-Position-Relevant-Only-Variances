@@ -1,3 +1,6 @@
+"""
+most of the codes in smart-meter are referred from: https://github.com/3springs/attentive-neural-processes
+"""
 from pathlib import Path
 import pandas as pd
 import numpy as np
@@ -35,7 +38,7 @@ class SmartMeterDataSet(torch.utils.data.Dataset):
         return len(self.df) - (self.num_context + self.num_extra_target)
 
 def get_smartmeter_df(indir=Path('../NP/data/smart-meters-in-london'), use_logy=False):
-    csv_files = '../NP/data/smart-meters-in-london/halfhourly_dataset/block_0.csv'
+    csv_files = indir /'halfhourly_dataset/block_0.csv'
     df = pd.read_csv(csv_files, parse_dates=[1], na_values=['Null'])
     #     print(df.info())
 
@@ -135,7 +138,12 @@ def collate_fns(max_num_context, max_num_extra_target):
         x_target = x[:, inds][:, num_context:]
         y_target = y[:, inds][:, num_context:]
 
-        return x_context, y_context, x_target, y_target
+        output = {}
+        output["x_context"] = x_context
+        output["y_context"] = y_context
+        output["x_target"] = x_target
+        output["y_target"] = y_target
+        return output
 
     return collate_fn
 

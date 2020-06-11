@@ -1,8 +1,8 @@
 import torch.nn as nn
 import torch
 import numpy as np
-from utils import to_multiple
-from utils import (
+from model.utils import to_multiple
+from model.utils import (
     init_sequential_weights,
     init_layer_weights,
     pad_concat

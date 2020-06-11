@@ -3,7 +3,7 @@ import random
 import torch
 import torch.nn as nn
 from torch.distributions import MultivariateNormal
-from utils import channel_last
+from model.utils import channel_last
 import warnings
 
 
